@@ -1,26 +1,26 @@
 package main
 
-import (
-	"strconv"
-)
+import "fmt"
+
+type treeNode struct {
+	value       int
+	left, right *treeNode
+}
+
+func (node treeNode) print() {
+	fmt.Print(node.value)
+}
+func (node *treeNode) setValue(value int) {
+	node.value = value
+}
 
 func main() {
-
-}
-
-func convertToBin(n int) string {
-	res := ""
-	for ; n > 0; n /= 2 {
-		lsb := n % 2
-		res = strconv.Itoa(lsb) + res
-	}
-	return res
-}
-
-func swap(a, b int) (int, int) {
-	return b, a
-}
-
-func updateSlices(s []int) {
-	s[0] = 100
+	var root treeNode
+	root = treeNode{value: 3}
+	root.left = &treeNode{}
+	root.right = &treeNode{5, nil, nil}
+	root.right.left = new(treeNode)
+	root.right.left.setValue(5)
+	root.right.left.print()
+	fmt.Println()
 }
