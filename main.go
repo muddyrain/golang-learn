@@ -5,10 +5,7 @@ import (
 )
 
 func main() {
-	var a int = 2
-	var b int = 3
-	a, b = swap(a, b)
-	println(a, b)
+
 }
 
 func convertToBin(n int) string {
@@ -22,4 +19,8 @@ func convertToBin(n int) string {
 
 func swap(a, b int) (int, int) {
 	return b, a
+}
+
+func updateSlices(s []int) {
+	s[0] = 100
 }
