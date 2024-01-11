@@ -3,6 +3,7 @@ package main
 import (
 	"awesomeProject/functional/fib"
 	"bufio"
+	"errors"
 	"fmt"
 	"os"
 )
@@ -17,9 +18,16 @@ func tryDefer() {
 }
 
 func writerFile(filename string) {
-	file, err := os.Create(filename)
+	file, err := os.OpenFile(filename, os.O_EXCL|os.O_CREATE, 0666)
+	err = errors.New("this is a custom error")
 	if err != nil {
-		panic(err)
+		pathError, ok := err.(*os.PathError)
+		if !ok {
+			panic(err)
+		} else {
+			fmt.Println("pathError", pathError.Path, pathError.Op, pathError.Err)
+		}
+		return
 	}
 	defer func(file *os.File) {
 		err := file.Close()
@@ -37,6 +45,5 @@ func writerFile(filename string) {
 }
 
 func main() {
-	//writerFile("fib.txt")
-	tryDefer()
+	writerFile("fib.txt")
 }
