@@ -2,7 +2,6 @@ package main
 
 import (
 	"awesomeProject/tree"
-	"fmt"
 )
 
 type myTreeNode struct {
@@ -27,10 +26,11 @@ func main() {
 	root.Right = &tree.Node{5, nil, nil}
 	root.Right.Left = new(tree.Node)
 	root.Right.Left.SetValue(5)
-	root.Traversal()
+	root.Traverse()
 
-	fmt.Println()
-	myRoot := myTreeNode{&root}
-	myRoot.postOrder()
-	fmt.Println()
+	nodeCount := 0
+	root.TraverseFunc(func(node *tree.Node) {
+		nodeCount++
+	})
+	println("Node count:", nodeCount)
 }
