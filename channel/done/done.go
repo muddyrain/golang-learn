@@ -35,7 +35,7 @@ func channelDemo() {
 	for i, worker := range workers {
 		worker.in <- 'A' + i
 	}
-	// wait for all of them
+	// wait for all of them 1
 	wg.Wait()
 }
 
