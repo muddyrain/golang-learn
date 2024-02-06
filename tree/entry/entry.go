@@ -2,6 +2,7 @@ package main
 
 import (
 	"awesomeProject/tree"
+	"fmt"
 )
 
 type myTreeNode struct {
@@ -33,4 +34,13 @@ func main() {
 		nodeCount++
 	})
 	println("Node count:", nodeCount)
+
+	c := root.TraverseWithChannel()
+	maxNode := 0
+	for node := range c {
+		if node.Value > maxNode {
+			maxNode = node.Value
+		}
+	}
+	fmt.Printf("Max node value: %d\n", maxNode)
 }
